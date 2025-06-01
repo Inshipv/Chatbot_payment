@@ -5,6 +5,7 @@ import json
 from model import NeuralNet
 from utils import bag_of_words, tokenize
 import nltk
+import os
 
 # Download NLTK 'punkt' tokenizer resource quietly
 nltk.download('punkt', quiet=True)
@@ -63,4 +64,5 @@ def chat():
     return jsonify({"response": response})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
