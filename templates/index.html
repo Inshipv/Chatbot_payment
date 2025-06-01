@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment Chatbot</title>
+  <style>
+    :root {
+      --bg-color: #f4f4f4;
+      --chat-bg: #ffffff;
+      --user-msg: #8B0000;
+      --bot-msg: #f1f1f1;
+      --text-color: #000000;
+      --nav-color: #5a0000;
+      --light-red: #f28b82;
+    }
+
+    body.dark {
+      --bg-color: #1b1b1b;
+      --chat-bg: #2b2b2b;
+      --user-msg: #B22222;
+      --bot-msg: #3a3a3a;
+      --text-color: #f28b82;
+      --nav-color: #2b0000;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .navbar {
+      background-color: var(--nav-color);
+      color: white;
+      padding: 15px 30px;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 10px;
+    }
+
+    .chat-container {
+      background: var(--chat-bg);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 380px;
+      max-width: 100%;
+      padding: 15px;
+    }
+
+    .chat-heading {
+      font-size: 16px;
+      text-align: center;
+      color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      background-color: #5a0000;
+      padding: 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+
+    .chat-box {
+      height: 400px;
+      overflow-y: auto;
+      border-radius: 8px;
+      background-color: var(--chat-bg);
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      max-width: 75%;
+      padding: 10px 16px;
+      margin: 6px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      word-wrap: break-word;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .user {
+      background-color: var(--user-msg);
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+
+    .bot {
+      background-color: var(--bot-msg);
+      color: var(--text-color);
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+
+    .chat-input {
+      display: flex;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      padding: 8px 10px;
+      background: #fff;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      padding: 8px;
+    }
+
+    button {
+      background-color: var(--user-msg);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 15px;
+    }
+
+    button:hover {
+      filter: brightness(0.9);
+    }
+
+    .typing-indicator {
+      font-style: italic;
+      font-size: 14px;
+      color: #888;
+      margin: 5px 12px;
+    }
+
+    .toggle-btn {
+      background: none;
+      color: white;
+      border: 1px solid white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .toggle-btn:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">🤖 Chatbot</div>
+    <button class="toggle-btn" onclick="toggleDarkMode()">🌙</button>
+  </div>
+
+  <div class="chat-wrapper">
+    <div class="chat-container">
+      <div class="chat-heading">How Can I Help You</div>
+      <div class="chat-box" id="chat-box"></div>
+      <div id="typing" class="typing-indicator" style="display: none;">Bot is typing...</div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type a message..." autocomplete="off" />
+        <button onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  const chatBox = document.getElementById("chat-box");
+  const typingIndicator = document.getElementById("typing");
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    if (!message) return;
+
+    const userMsg = document.createElement("div");
+    userMsg.className = "message user";
+    userMsg.textContent = message;
+    chatBox.appendChild(userMsg);
+    input.value = "";
+    typingIndicator.style.display = "block";
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    setTimeout(() => {
+      fetch("/chat", {
+        method: "POST",
+        body: new URLSearchParams({ message }),
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Server error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        typingIndicator.style.display = "none";
+        const botMsg = document.createElement("div");
+        botMsg.className = "message bot";
+        botMsg.textContent = data.response || "Sorry, I didn't understand that.";
+        chatBox.appendChild(botMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      })
+      .catch(error => {
+        console.error("Chatbot Error:", error);
+        typingIndicator.style.display = "none";
+        const errorMsg = document.createElement("div");
+        errorMsg.className = "message bot";
+        errorMsg.textContent = "⚠️ Sorry, something went wrong. Please try again later.";
+        chatBox.appendChild(errorMsg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      });
+    }, 800);
+  }
+
+  document.getElementById("user-input").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") sendMessage();
+  });
+</script>
+
+</body>
+</html>

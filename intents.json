@@ -1,0 +1,201 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi", "Hello", "Hey", "Good day", "Greetings", "Howdy", "Hi there",
+        "Hello there", "Good morning", "Good afternoon", "Good evening",
+        "Nice to see you", "What's up?", "How are you?", "Glad to meet you",
+        "Hello, bot!", "Hey, chatbot!", "Hello, is anyone there?",
+        "Are you there?", "Hi, can you help me?"
+      ],
+      "responses": [
+        "Hello! How can I assist you today?",
+        "Hi there! Need help with anything?",
+        "Greetings! How may I help you?",
+        "Hey! What can I do for you?",
+        "Good to connect! How can I be of service?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye", "Goodbye", "See you later", "Farewell", "Catch you later",
+        "I'm leaving", "Gotta go", "Bye for now", "Talk to you later",
+        "See ya", "Have a good one", "So long", "Adios", "Until next time",
+        "Cheers, bye", "That's all for now", "I'm done", "I'm finished", "Done for the day"
+      ],
+      "responses": [
+        "Goodbye! Let us know if you need anything else.",
+        "See you later, have a great day!",
+        "Farewell! Hope to assist you again soon.",
+        "Bye! Come back anytime.",
+        "Take care! Feel free to reach out if you have more questions."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks", "Thank you", "Appreciate it", "Thanks a lot", "Many thanks",
+        "Thank you so much", "Cheers", "I really appreciate your help",
+        "That's helpful, thanks", "Much obliged", "Thanks a bunch",
+        "You've been a great help", "Thanks for your assistance",
+        "I'm grateful", "Thank you for everything", "Thanks for the help",
+        "I appreciate it", "Thank you very much"
+      ],
+      "responses": [
+        "You're welcome!",
+        "Happy to help!",
+        "Anytime!",
+        "Glad I could assist.",
+        "No problem at all!"
+      ]
+    },
+    {
+      "tag": "payment_methods",
+      "patterns": [
+        "How can I pay?", "Accepted payments?", "Do you take credit cards?",
+        "Can I use PayPal?", "What payment options are available?",
+        "What forms of payment do you accept?", "Can I pay with debit card?",
+        "Is Visa accepted?", "Do you accept Amex?", "What about UPI?",
+        "Can I pay with my card?", "Which cards can I use?"
+      ],
+      "responses": [
+        "We accept Visa, MasterCard, AmEx, UPI, and PayPal.",
+        "You can pay with most major cards, UPI, or PayPal.",
+        "Our accepted payment methods include Visa, MasterCard, American Express, UPI, and PayPal."
+      ]
+    },
+    {
+      "tag": "order_status",
+      "patterns": [
+        "Track my order", "Order status", "Where is my package?",
+        "Is my order shipped?", "What's the status of my delivery?",
+        "Has my item shipped yet?", "Can I check my order's progress?",
+        "How do I track my purchase?", "When will my order arrive?",
+        "What's happening with my order?"
+      ],
+      "responses": [
+        "Please share your order ID to check the status.",
+        "Sure! I need your order number to help with that.",
+        "To track your order, kindly provide your order identification number."
+      ]
+    },
+    {
+      "tag": "refund_policy",
+      "patterns": [
+        "Refund policy", "Can I return this?", "What about returns?",
+        "How do I get a refund?", "What's your return policy?",
+        "Can I get my money back?", "How do returns work?",
+        "What are the conditions for a refund?", "Is this item eligible for return?",
+        "Do you offer exchanges?"
+      ],
+      "responses": [
+        "You can return products within 30 days. Visit our refund page for full details.",
+        "We offer refunds on eligible items. Let me direct you to the return policy.",
+        "Our return policy allows returns within 30 days of purchase. Please see our website for comprehensive information."
+      ]
+    },
+    {
+      "tag": "product_recommendation",
+      "patterns": [
+        "Suggest a product", "What should I buy?", "Any recommendations?",
+        "Looking for a gift", "Can you recommend something?", "What's popular?",
+        "Best sellers?", "What products are good for [occasion]?",
+        "I need help choosing a product", "What's trending?"
+      ],
+      "responses": [
+        "Can you tell me the category you're interested in?",
+        "Sure! What's your budget and preference?",
+        "To help me recommend the best product, could you please specify what category you're interested in (e.g., electronics, home goods, fashion)?"
+      ]
+    },
+    {
+      "tag": "technical_support",
+      "patterns": [
+        "Website not working", "Payment page error", "I can't complete my order",
+        "Having issues with checkout", "My account is buggy",
+        "Something is wrong with the site", "I'm getting an error message",
+        "The page isn't loading", "I can't log in to my account",
+        "The shopping cart isn't working"
+      ],
+      "responses": [
+        "Sorry about that! Could you describe the issue?",
+        "Let me help. What exactly isn't working?",
+        "I'm sorry to hear that. Could you please describe the technical issue in more detail?"
+      ]
+    },
+    {
+      "tag": "delivery_time",
+      "patterns": [
+        "How long is delivery?", "When will it arrive?", "Delivery time estimate",
+        "What's the shipping duration?", "Estimated delivery time?",
+        "How many days for delivery?", "When can I expect my package?",
+        "What are your shipping times?", "How fast is shipping?",
+        "Typical delivery timeframe?"
+      ],
+      "responses": [
+        "Most deliveries arrive in 2–5 business days.",
+        "Shipping typically takes 2 to 5 days.",
+        "Standard delivery is usually within 2 to 5 business days."
+      ]
+    },
+    {
+      "tag": "account_help",
+      "patterns": [
+        "I forgot my password", "How to reset my password?", "Can't log in",
+        "Help with my account", "I'm locked out of my account",
+        "How do I recover my password?", "My account is blocked",
+        "Trouble logging in", "Need help with my login", "Password reset?"
+      ],
+      "responses": [
+        "You can reset your password on the login page.",
+        "Let me guide you through password recovery.",
+        "To reset your password, please click on the 'Forgot Password' link on the login page."
+      ]
+    },
+    {
+      "tag": "offers_discounts",
+      "patterns": [
+        "Any offers?", "Do you have discounts?", "Coupon codes?",
+        "Ongoing deals?", "Are there any promotions?", "Current sales?",
+        "Discount codes available?", "What deals are active now?",
+        "Any special offers?", "Promotional codes?"
+      ],
+      "responses": [
+        "Yes! Check our Offers page or ask me for today's deals.",
+        "We have seasonal discounts available right now!",
+        "Our 'Offers' page has all the current promotions."
+      ]
+    },
+    {
+      "tag": "feedback",
+      "patterns": [
+        "I want to give feedback", "Can I rate my experience?", "Submit feedback",
+        "How can I give feedback?", "Where can I leave a review?",
+        "I have some feedback for you.", "Can I provide a suggestion?",
+        "I want to share my thoughts", "How was my experience?", "Give a review?"
+      ],
+      "responses": [
+        "We'd love your feedback! Please use our feedback form.",
+        "Sure! Tell me what you’d like to share.",
+        "Yes, your feedback is valuable! You can use our online feedback form to submit your thoughts."
+      ]
+    },
+    {
+      "tag": "security_help",
+      "patterns": [
+        "Is my payment secure?", "How safe is this website?", "Data privacy policy?",
+        "Is my information safe?", "What about data security?",
+        "Is it safe to buy from here?", "Are my details protected?",
+        "Privacy policy details?", "How secure are transactions?",
+        "Is my credit card information secure?"
+      ],
+      "responses": [
+        "We use SSL encryption and follow strict privacy protocols.",
+        "Your payments are secure with end-to-end encryption.",
+        "Yes, our website uses advanced SSL encryption to ensure all your data and payments are secure."
+      ]
+    }
+  ]
+}
